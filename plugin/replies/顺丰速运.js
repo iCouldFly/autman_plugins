@@ -10,7 +10,7 @@
 //[disable: false]
 //[version: 0.0.2]
 //[priority: 1]
-//[rule: ^顺丰速运=(https://mcs-mimp-web.sf-express.com/mcs-mimp/share/(app|weChat)/share(GiftReceive)?Redirect).+$]
+//[rule: ^顺丰速运=(https://mcs-mimp-web.sf-express.com/mcs-mimp/share/(app|weChat)/share(GiftReceive)?Redirect.+)$]
 //[description: 适用于 leaf本，命令：顺丰速运=[抓包链接]]
 
 Debug('\n\n\n\n\n<div style="text-align: center; font-size: 72px; font-weight: bold;">顺丰速运</div>')
