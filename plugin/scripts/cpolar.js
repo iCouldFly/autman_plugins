@@ -1,3 +1,4 @@
+//[author: jusbe]
 //[title: cpolar]
 //[language: nodejs]
 //[class: 工具类]
@@ -11,13 +12,14 @@
 //[platform: all] 适用的平台
 //[open_source: false]是否开源
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
-//[version: 1.0.0]版本号
-//[public: false] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
-//[price: 999] 上架价格
-//[description: 关于插件的描述] 使用方法尽量写具体
-// [param: {"required":true,"key":"cpolar.host","bool":false,"placeholder":"http://127.0.0.1:9200","name":"地址","desc":""}]
-// [param: {"required":true,"key":"cpolar.email","bool":false,"placeholder":"","name":"账号","desc":""}]
-// [param: {"required":true,"key":"cpolar.password","bool":false,"placeholder":"","name":"密码","desc":""}]
+//[version: 1.1.0 上线 breakins]版本号
+//[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
+//[price: 2] 上架价格
+//[description: 用于监控cpolar地址变化，并执行breakins。自行设置 插件定时 或 定时推送<br>首发：20240513<br><img src="https://bbs.autman.cn/assets/files/2024-06-24/1719214805-355657-cpolar.jpg" alt="cpolar" />] 
+// [param: {"required":true,"key":"cpolar.host","bool":false,"placeholder":"http://127.0.0.1:9200","name":"cpolar容器地址","desc":""}]
+// [param: {"required":true,"key":"cpolar.email","bool":false,"placeholder":"","name":"cpolar容器账号","desc":""}]
+// [param: {"required":true,"key":"cpolar.password","bool":false,"placeholder":"","name":"cpolar容器密码","desc":""}]
+// [param: {"required":false,"key":"cpolar.breakins","bool":false,"placeholder":"如: set RabbitPro web {tunnel_name}","name":"触发命令","desc":"多命令,分隔<br>{tunnel_name}将自动替换为对应 https/http链接（优先https）"}]
 
 const middleware = require('./middleware.js');
 const axios = require('axios');
@@ -25,7 +27,7 @@ const axios = require('axios');
 const senderID = middleware.getSenderID();
 const s = new middleware.Sender(senderID)
 
-let host, email, password, token
+let host, email, password, token, breakins
 !(async () => {
     // const is_admin = await s.isAdmin()
     const plugin_name = await s.getPluginName()
@@ -33,25 +35,26 @@ let host, email, password, token
     // const user_avatar_url = await s.getUserAvatarUrl()
     // const username = await s.bucketGet("cloud", "username")
     // const password = await s.bucketGet("cloud", "password")
-    const im = await s.getImtype()
-    const user_id = await s.getUserID()
-    const user_name = await s.getUserName()
-    const group_name = await s.getGroupName()
-    const group_id = await s.getChatID()
-    const param1 = await s.param(1)
-    const param2 = await s.param(2)
+    // const im = await s.getImtype()
+    // const user_id = await s.getUserID()
+    // const user_name = await s.getUserName()
+    // const group_name = await s.getGroupName()
+    // const group_id = await s.getChatID()
+    // const param1 = await s.param(1)
+    // const param2 = await s.param(2)
     // const param3 = await s.param(3)
-    const message = await s.getMessage()
-    const message_id = await s.getMessageID()
+    // const message = await s.getMessage()
+    // const message_id = await s.getMessageID()
 
     host = await middleware.bucketGet(plugin_name, "host")
     email = await middleware.bucketGet(plugin_name, "email")
     password = await middleware.bucketGet(plugin_name, "password")
     token = await middleware.bucketGet(plugin_name, "cpolar_token")
+    breakins = (await middleware.bucketGet(plugin_name, "breakins")).split(",")
 
     let info = await api_v1_user_info(token)
         .then(async i => {
-            console.debug(i)
+            // console.debug(i)
             if (i.code) {
                 if (i.code == 500) s.reply("令牌错误，尝试获取令牌")
                 if (i.code == 50014) s.reply("令牌过期，尝试重新获取令牌")
@@ -59,10 +62,10 @@ let host, email, password, token
                     return await api_v1_user_login(email, password)
                         .then(async o => {
                             if (o.code) {
-                                console.log("重新获取令牌失败")
+                                s.reply("重新获取令牌失败")
                                 return o
                             } else {
-                                console.log("重新获取令牌成功")
+                                s.reply("重新获取令牌成功")
                                 token = o.data.token
                                 await middleware.bucketSet(plugin_name, "cpolar_token", token)
                                 return await api_v1_user_info(token)
@@ -71,15 +74,15 @@ let host, email, password, token
                 }
                 return i
             }
-            console.log("令牌登录成功")
+            // console.log("令牌登录成功")
             return i
         })
     if (info.code) return s.reply(JSON.stringify(info))
 
     let tunnels = await api_v1_tunnels(token)
-    console.debug(tunnels)
+    // console.debug(tunnels)
 
-    let context = `${plugin_name} v${plugin_version}\n=========================\n`
+    let context = `${plugin_name} v${plugin_version}\n========================\n`
     // context += `\n用户：${info.data.name}（${info.data.roles.toString()}）`
     // context += `\n隧道（${tunnels.data.total} 条）：\n`
     context += tunnels.data.items.map((v, i) => {
@@ -90,7 +93,24 @@ let host, email, password, token
         return msg
     }).join("\n")
 
-    s.reply(context)
+    await s.reply(context)
+
+    await middleware.bucketSet(plugin_name, "data", JSON.stringify(tunnels.data.items))
+
+    breakins.forEach(element => {
+        let keys = element.match(/(?<=\{).+?(?=\})/img),
+            content = element
+
+        keys.forEach(key => {
+            const value = tunnels.data.items.find(v => v.name == key)
+            if (value == undefined) return // console.error(`未找到关键词: ${key}`)
+
+            content = content.replace(`{${key}}`, value.public_url)
+        })
+
+        console.log("breakIn:", content)
+        s.breakIn(content)
+    })
 })()
 
 function api_v1_tunnels(token) {
