@@ -12,10 +12,10 @@
 //[platform: all] 适用的平台
 //[open_source: false]是否开源
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
-//[version: 1.1.0 上线 breakins]版本号
+//[version: 1.1.1 加个送头链接]版本号
 //[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 2] 上架价格
-//[description: 用于监控cpolar地址变化，并执行breakins。自行设置 插件定时 或 定时推送<br>首发：20240513<br><img src="https://bbs.autman.cn/assets/files/2024-06-24/1719214805-355657-cpolar.jpg" alt="cpolar" />] 
+//[description: 用于监控cpolar地址变化，并执行breakins。自行设置 插件定时 或 定时推送<br>送头链接: <a href="https://i.cpolar.com/m/4rzj" title="cpolar">cpolar</a><br>首发：20240513<br><img src="https://bbs.autman.cn/assets/files/2024-06-24/1719214805-355657-cpolar.jpg" alt="cpolar" />] 
 // [param: {"required":true,"key":"cpolar.host","bool":false,"placeholder":"http://127.0.0.1:9200","name":"cpolar容器地址","desc":""}]
 // [param: {"required":true,"key":"cpolar.email","bool":false,"placeholder":"","name":"cpolar容器账号","desc":""}]
 // [param: {"required":true,"key":"cpolar.password","bool":false,"placeholder":"","name":"cpolar容器密码","desc":""}]
