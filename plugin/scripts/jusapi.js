@@ -9,7 +9,7 @@
 //[version: 0.0.1]版本号
 //[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 0] 上架价格
-//[description: 由于autman原因，市场下载及分发此插件无效。请到此处下载: <a href="https://51daili.com/index/user/promotion/parent_id/6750/code/FaYfX0ZY.html" title="jusapi.js">jusapi.js</a>] 使用方法尽量写具体
+//[description: 由于autman原因，市场下载及分发此插件无效。请到此处下载: <a href="https://raw.githubusercontent.com/iCouldFly/autman/main/plugin/scripts/jusapi.js" title="jusapi.js">jusapi.js</a>] 使用方法尽量写具体
 //[param: {"required":true,"key":"jusapi.host","bool":false,"placeholder":"http://127.0.0.1:8080","name":"host","desc":"autMan 地址"}]
 //[param: {"required":true,"key":"jusapi.client_id","bool":false,"placeholder":"","name":"client_id","desc":"系统管理-系统应用-APPID"}]
 //[param: {"required":true,"key":"jusapi.client_secret","bool":false,"placeholder":"","name":"client_secret","desc":"系统管理-系统应用-APPSECRET"}]
