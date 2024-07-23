@@ -18,8 +18,7 @@ async function main(){
 
     // 自定义标头
     const headers = {
-        'Cookie': 'deap=OTQ3NTEtSlBiR0sya0hYSnc4bTIyV0s1RVdMY2Q4REpzbjZ4ckZHTDhpRFpaVGczMDA4OQ..;createdAtToday=false;isNotLoginUser=false;wdata4=sEPXL6yNmw3i4q72DaweWiQczEykwerY2MioVjuHX9w6xorSFovHxHrQpgt7tIcgwAwfLbmfVou8mMWg7uap4vt/bUKbQGm2pTEebjnIHshDPSSUvRVbeQTdvefDINv1kQKSD+hTqVyVUqwUrPgrM8xfKTlGy/rsHcroB6VG9uQ=;w_ts=1696438907853;_ac=eyJhaWQiOjk0NzUxLCJjaWQiOjQwMDM4OTU1MTZ9;tokenId=29eeca0eb6a5832632dafbbf3ae377c4;wdata3=fu4NJvzsSSnRB6vxHcpNaJf8HrLWVXZM5JMXPJbdo1Vxtx55oi3kBEfBUpLdJkDmQTTda9pbKGkg1FJLJkJsNcpe9TnyT8TyBPbYihYNK6DUaFxiFvprAJw4UuaJqnuVmh3eFfaCkzcPP3QkG2CgGAFwj;dcustom=registerTime%253D2023-06-13%2B11%253A34%253A48%2526phone%253D13059521583%2526newUser%253D0%2526nickname%253DJuxbe%2526avatar%253D%2526sessionId%253D651d9a62f34e1650b37a25c1'
-        // 'Cookie': '_ac=eyJhaWQiOjk0NzUxLCJjaWQiOjQwMzA3MzU2MDZ9;createdAtToday=true;isNotLoginUser=false;dcustom=registerTime%253D2023-07-11%2B21%253A42%253A45%2526phone%253D13202300853%2526newUser%253D0%2526nickname%253D132***0853%2526avatar%253D%2526sessionId%253D64ad5c55a7fd39181ebbfde6;deap=OTQ3NTEtSlBiR0sya0hYSnc4bTIyV0s1RVdMY2Q4REpzbjZ4ckZHTDhpRFpaVGczMDA4OQ..;wdata4=J2M/d9VusR07jncEA+VFb3AeBEUUILSwHerHnFw3aVlMR8OkCkPhWn0m0pJwz2KAjioew2QpG10bJiStsePiTR4vlzMLFYD6CYDrnP6F1TfNxHxQjwycg6Spk5I3esjl/lp4Gwv9N81q+qRCJXSa1/Y32/56zxe9ZcdQytRCsxo=;w_ts=1696333771681;tokenId=f5ed0f673b65fb0e4542bc0dadf956be;wdata3=fu4NJvzsSSnRB6vxHcpNaJf8HrLWVXZM34v32zFTT3Tfsj2pXBwX2HmiQH89yTAnSQGiGA36UB7Fdq7eAKRg6jAxkvf8DGwz1vvybCBsd5SfbjkFGQQ1hH5Tp6EnyawbuAZJWDx5GRewVis9Ja447GtQk'
+        'Cookie': ''
     };
 
     // 发送GET请求并包括自定义标头
