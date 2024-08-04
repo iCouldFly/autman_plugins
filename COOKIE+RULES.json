@@ -1,0 +1,17 @@
+[
+    {
+        "name": "望潮",
+        "enabled": true,
+        "type": "one_value",
+        "ql_name": "🎁福利中心",
+        "ql_key_name": "WangChao",
+        "v_separator": "&",
+        "m_key": "望潮",
+        "l_keys": "望潮,密码",
+        "l_keys_2": "",
+        "add_f": "",
+        "add_b": "",
+        "k_separator": " ",
+        "remarks": "{userid}"
+    }
+]
