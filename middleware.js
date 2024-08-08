@@ -32,7 +32,7 @@ const url = "http://localhost:8080/otto"
 
 async function accessLocalService(path, body, timeout) {
   return await axios.post(url + path, body, { headers: { 'Content-Type': 'application/json' }, timeout: timeout })
-    .then(({ status, statusText, headers, config, request, data: { code, message, data } }) => data)
+    .then(({ status, statusText, headers, config, request, data }) => data?.data)
     .catch(({ message, name, code, config, request, response }) => console.error(path, name, code, message))
 }
 
