@@ -68,7 +68,8 @@ function addMsgListener(imtype, chatid, userid, callback) {
 
 // 获取发送者ID
 function getSenderID() {
-  console.log(process.argv);
+  console.log("getSenderID:",process.argv);
+  // console.log(process.argv);
   const arg = process.argv[1];
   return arg
 }
