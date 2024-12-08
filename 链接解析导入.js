@@ -51,6 +51,7 @@ const s = new middleware.Sender(senderID)
     }
 
     s.bucketSet("jd_cookie", "varlink", JSON.stringify(new_varlink))
+    fs.rm(fileName)
 
     const timestamp = Date.now()
     enBackUp && fs.writeFile(`./varlink_${timestamp}.bak.json`, JSON.stringify(old_varlink, null, 4))
