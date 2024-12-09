@@ -27,7 +27,7 @@ const s = new middleware.Sender(senderID)
     const plugin_version = (await s.getPluginVersion()).match(/^[\d\.]+/)[0]
 
     //单位转换
-    const formatBytes = (bytes) => bytes ? (i = Math.floor(Math.log(bytes) / Math.log(1024)), `${(bytes / Math.pow(1024, i)).toFixed(2)} ${['B', 'KB', 'MB', 'GB', 'TB'][i]}`) : '0 B'
+    const formatBytes = bytes => bytes ? (i = Math.floor(Math.log(bytes) / Math.log(1024)), `${(bytes / Math.pow(1024, i)).toFixed(2)} ${['B', 'KB', 'MB', 'GB', 'TB'][i]}`) : '0 B'
 
     s.reply("开始执行插件提取")
     let out_log = `${plugin_name} v${plugin_version}\n========================`
