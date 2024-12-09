@@ -11,7 +11,7 @@
 //[open_source: true]是否开源
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
 //[version: 1.3.0 重构部分代码以及开源]版本号
-//[public: false] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
+//[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 2] 上架价格
 //[description: 用于2.9.4之前提取“我的”中已安装插件到 /autMan/plugin/插件提取_xxx 下，提取插件放在对应的 encrypted_es5 或 encrypted_ext 目录下使用<br>首发: 240502<br><img src="https://bbs.autman.cn/assets/files/2024-06-19/1718796718-74337-3a7cd149-db7e-4c58-9abe-70be9245d54a.jpg" alt="插件提取" />] 使用方法尽量写具体
 
