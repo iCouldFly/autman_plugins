@@ -9,20 +9,20 @@
 //[rule: ^云备案 (https?:\/\/.+\..+[^\/])$] 匹配规则，多个规则时向下依次写多个
 //[priority: 1] 优先级，数字越大表示优先级越高
 //[platform: all] 适用的平台
-//[open_source: false]是否开源
+//[open_source: true]是否开源
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
 //[version: 1.0.0]版本号
 //[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 2] 上架价格
-//[description: 用于更新自建市场备案地址，如：云备案 https://www.autman.com:8080。配合 cpolar 实现动态更新<br>首发：20240515<br><img src="https://bbs.autman.cn/assets/files/2024-06-24/1719215230-341253-d55af059-fb99-4e6a-b0b9-af0c07c26011.jpg" alt="cpolar" />] 使用方法尽量写具体
+//[description: 用于更新自建市场备案地址，如：云备案 https://www.autman.com:8080。配合 cpolar 实现动态更新<br>高危插件，谨慎使用<br>首发：20240515<br><img src="https://bbs.autman.cn/assets/files/2024-06-24/1719215230-341253-d55af059-fb99-4e6a-b0b9-af0c07c26011.jpg" alt="cpolar" />] 使用方法尽量写具体
 //[param: {"required":true,"key":"jusapi.host","bool":false,"placeholder":"http://127.0.0.1:8080","name":"autman 地址","desc":""}]
 //[param: {"required":true,"key":"jusapi.username","bool":false,"placeholder":"","name":"autman 账号","desc":""}]
 //[param: {"required":true,"key":"jusapi.password","bool":false,"placeholder":"","name":"autman 密码","desc":""}]
 
-const middleware = require('./middleware.js');
 const axios = require('axios');
 const qs = require('qs');
 
+const middleware = require('./middleware.js');
 const senderID = middleware.getSenderID();
 const s = new middleware.Sender(senderID)
 
@@ -58,8 +58,6 @@ const s = new middleware.Sender(senderID)
             'Cookie': Cookie,
         }
     })
-        // { code: 200, message: '已登陆', data: { user: 'jusbe' } }
-        // {"code":401,"message":"未登陆","data":null}
         .then(response => response.data)
         .catch(error => ({ code: error.response.status, message: error.response.statusText }));
 
@@ -87,8 +85,6 @@ const s = new middleware.Sender(senderID)
             'password': password
         })
     })
-        // {"code":200,"message":"登陆成功","data":null}
-        // {"code":401,"message":"账号或密码错误","data":null}
         .then(response => {
             if (response.data.code === 200) {
                 Cookie = response.headers["set-cookie"].join("; ")
@@ -119,7 +115,6 @@ const s = new middleware.Sender(senderID)
             'Cookie': Cookie
         }
     })
-        // { code: 200, message: '备案成功', data: null }
         .then(response => response.data)
         .catch(error => ({ code: error.response.status, message: error.response.statusText }));
     message += "\n云备案: " + response.message
