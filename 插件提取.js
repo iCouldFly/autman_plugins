@@ -89,5 +89,5 @@ const s = new middleware.Sender(senderID)
     }
 
     // ============================== OUT_LOG ============================== //
-    await s.reply(out_log)
+    s.reply(out_log)
 })()
