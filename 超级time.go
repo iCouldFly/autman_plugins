@@ -9,6 +9,7 @@
 //[rule: ^time$] 匹配规则，多个规则时向下依次写多个
 //[priority: 1] 优先级，数字越大表示优先级越高
 //[version: 1.0.0]版本号
+//[open_source: true]是否开源
 //[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 999] 上架价格
 //[description: 超超超超级time<br>首发：20240413<br><img src="https://bbs.autman.cn/assets/files/2024-06-19/1718766252-660622-time.jpg" alt="超级time" />] 使用方法尽量写具体
@@ -36,11 +37,6 @@ func main() {
 	sender := middleware.Sender{
 		SenderID: senderId,
 	}
-
-	// groupCode := sender.GetChatID()
-	// groupName := sender.GetChatName()
-	// userID := sender.GetUserID()
-	// username := sender.GetUsername()
 
     // 获取当前时间
     now := time.Now()
