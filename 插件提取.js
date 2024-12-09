@@ -8,11 +8,86 @@
 //[rule: ^插件提取$] 匹配规则，多个规则时向下依次写多个
 //[priority: 1] 优先级，数字越大表示优先级越高
 //[platform: all] 适用的平台
-//[open_source: false]是否开源
+//[open_source: true]是否开源
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
-//[version: 1.1.3 移除 jusapi]版本号
-//[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
+//[version: 1.3.0 重构部分代码以及开源]版本号
+//[public: false] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
 //[price: 2] 上架价格
 //[description: 用于2.9.4之前提取“我的”中已安装插件到 /autMan/plugin/插件提取_xxx 下，提取插件放在对应的 encrypted_es5 或 encrypted_ext 目录下使用<br>首发: 240502<br><img src="https://bbs.autman.cn/assets/files/2024-06-19/1718796718-74337-3a7cd149-db7e-4c58-9abe-70be9245d54a.jpg" alt="插件提取" />] 使用方法尽量写具体
 
-var _0xodj='jsjiami.com.v7';const _0x5ba2be=_0x54fa;function _0x54fa(_0x45b931,_0x5c1762){const _0x542437=_0x5424();return _0x54fa=function(_0x54fa8e,_0x14aa49){_0x54fa8e=_0x54fa8e-0x81;let _0x4b010c=_0x542437[_0x54fa8e];if(_0x54fa['zvWhOF']===undefined){var _0xd4aeaa=function(_0x48d9c2){const _0x53b435='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x197ce1='',_0x13bec4='';for(let _0x449e4f=0x0,_0x469917,_0x570054,_0x2aeddc=0x0;_0x570054=_0x48d9c2['charAt'](_0x2aeddc++);~_0x570054&&(_0x469917=_0x449e4f%0x4?_0x469917*0x40+_0x570054:_0x570054,_0x449e4f++%0x4)?_0x197ce1+=String['fromCharCode'](0xff&_0x469917>>(-0x2*_0x449e4f&0x6)):0x0){_0x570054=_0x53b435['indexOf'](_0x570054);}for(let _0x16a50d=0x0,_0x2edbe9=_0x197ce1['length'];_0x16a50d<_0x2edbe9;_0x16a50d++){_0x13bec4+='%'+('00'+_0x197ce1['charCodeAt'](_0x16a50d)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x13bec4);};const _0x2c2a37=function(_0x329bed,_0x547efc){let _0x53f3c5=[],_0x4899e5=0x0,_0xdc1ba9,_0x305bbf='';_0x329bed=_0xd4aeaa(_0x329bed);let _0x23ce9b;for(_0x23ce9b=0x0;_0x23ce9b<0x100;_0x23ce9b++){_0x53f3c5[_0x23ce9b]=_0x23ce9b;}for(_0x23ce9b=0x0;_0x23ce9b<0x100;_0x23ce9b++){_0x4899e5=(_0x4899e5+_0x53f3c5[_0x23ce9b]+_0x547efc['charCodeAt'](_0x23ce9b%_0x547efc['length']))%0x100,_0xdc1ba9=_0x53f3c5[_0x23ce9b],_0x53f3c5[_0x23ce9b]=_0x53f3c5[_0x4899e5],_0x53f3c5[_0x4899e5]=_0xdc1ba9;}_0x23ce9b=0x0,_0x4899e5=0x0;for(let _0x1fabe4=0x0;_0x1fabe4<_0x329bed['length'];_0x1fabe4++){_0x23ce9b=(_0x23ce9b+0x1)%0x100,_0x4899e5=(_0x4899e5+_0x53f3c5[_0x23ce9b])%0x100,_0xdc1ba9=_0x53f3c5[_0x23ce9b],_0x53f3c5[_0x23ce9b]=_0x53f3c5[_0x4899e5],_0x53f3c5[_0x4899e5]=_0xdc1ba9,_0x305bbf+=String['fromCharCode'](_0x329bed['charCodeAt'](_0x1fabe4)^_0x53f3c5[(_0x53f3c5[_0x23ce9b]+_0x53f3c5[_0x4899e5])%0x100]);}return _0x305bbf;};_0x54fa['WjPkNn']=_0x2c2a37,_0x45b931=arguments,_0x54fa['zvWhOF']=!![];}const _0x570de4=_0x542437[0x0],_0x49d478=_0x54fa8e+_0x570de4,_0x382f93=_0x45b931[_0x49d478];return!_0x382f93?(_0x54fa['LMAUDt']===undefined&&(_0x54fa['LMAUDt']=!![]),_0x4b010c=_0x54fa['WjPkNn'](_0x4b010c,_0x14aa49),_0x45b931[_0x49d478]=_0x4b010c):_0x4b010c=_0x382f93,_0x4b010c;},_0x54fa(_0x45b931,_0x5c1762);}function _0x5424(){const _0x5e78c1=(function(){return[...[_0xodj,'QjEsEqejrginaxmri.utcMbopUGmYC.qwyvG7XeO==','WQ7cNcZcPJZdLmo8','WRdcIvK','C8o2AW','W5hcLJ3cSYq','irxcUxNdRCk8','WRpdJmonqCkkCCocWQmo','bmkhva9ciCoy','5B6Z5AsG5OUp6koJ5O6W5lMm5O+b5y+d','WOZdJc3cJMDds287vCoT','WP9wWOXNW4W','eCkdFSkyD8ozta','ACogtWH/','W7pcHSkuEmkOqCo5WPyD','ir/cSa','s+s6MYO','WRTXwq','A8oYeGlcJq','44gL5O+p5lUc5O675yYy44oB5OYO5y+E5O2o5lQuhW','w0mNWPBcRmkw','m8k5xG','xSoBm8ox5yAc5yEk5OI55yUN772K','W5v+W5HB5OY55lIrWRrD','W6RdKWBdGmkdWOHtWOq/csm','W6JdKaVdGCkcW6PeWOi4fbqU','W6pdVSkgrKxcTa','WPlcP1JcLCoy','f+s4JgNcTmkaWQRMJiZKUjBVVQBLVBRLP5RMJzJLJQJMJlBKUiy','aCkqtHrleCouW799','xSotaflcKW','W73cRIFcVHFdKSomWQafW6xcI8k9W6W3','pSk2rcDw','W7FcMx7dLWu','WO3dIc7dRWnnE2mm','WOu8W4W','axH2ogC','WRBdHmoeomo5nSkKWPGFyCkof8om','WPCpW5SqdW','WOVdV1pcKmowWOa'],...(function(){return[...['WQVcHxNdVSo0','xN4fzCov','pGtcPxFdT8kZWRhdJCkx','44oq5O2C5lI85O+Z5y2U44kg5OU25yIN','FeNdRCkPW4tcSSogmrnnw2dcKW','W6JcKCktA8k5BW','WPhdQwhdNb1i','s8oFgudLHRFLHllMIQ3LIiZVVja','DZfuygpcTfFdVmoZAG','BuJdVmkRW4/cOCoUoWy','WR9bWPzLW5uy','W6RdTbT0W78GW6rlW5i','zGrNuxe','WRiOW5BcVdpcKs08WQ3dU17dGq','WQuLWOVcQbe','W53dLmoAiMNdMCoJWODEDM4','W6xdLaJcOSoJWRHbWPGv','W6RdUmojWONcMa','FmoLzCk6W44','WRZcNCkHW6VLHzBLHPpMIOpLIjVVVA8','WQJdNNfaW5P1W79yjb7cMSkCASkC','jmoFtmo+WOC0ASoqW6a','WQSwW7y','5OQT5yIuW5G','W6ddUGTnW6egW7PmW59lFSkGwq','WRtdNwm','WOxMJyVLJl7OT47LVRxdPGq','WQBdRx/dOu/cJSkxWR4+W73cP8o3W7jU','W5JdGCk9DNC','W4JdOspMJyJKUyZMJAlLJRe9W6GDW5O','CmoTBHHiWQtdG8oPWRq','W7NcMGlcHdG','rmoSlqJcPq','zSoUWPC','W6CsW4XTW5GdW50TWRG','W67cOmoL5O+X5lMo5O2h5y2EsetdPCkIW6S','W6zFWOldHmoh','BfNdVSkUW5G','W6K4Cmo2WRBdQSkwDCkEW4K9EhRcOJ4qwmo3W6ZdSdFcOCogWPacW5ZcU8ouhUAoTos5Sfj9','CCo8BX5kWRxdJW'],...(function(){return['brj/WQdcJCkCWQtcHSoh','W65apG','sCkZWQWvrHG','gCouESkzdW','WQWYWPFcObCO','WQNcSbj0W6KxW7faW4zKBCkOeSkWkG','5lUcus7dKxRMJANKUia','W53cH3xcUJK','W41eWRldRCoF','qmowf1uFBSo4W4rAW6qCW6m','wmomcoAoSUs7MoAoH+wnQ8omFCoViG','44om5OY05lUi5OYO5y2G44op5O+55yYH6lA95B+gFq','W6pdTmkp','cHT3W5hLHyhLHPVMI47LIB/VVQi','rum6WP7cTmkiWRS','44kM5OYn5lUv5OYO5y6444gl5O+H5y2I6lEB5B+bzG','W6VdK8o1WQlcRSkBW7RcQGrSW6VdIe1J','imkbnmo5W6RdRhn2g3y','W5RcJMRdKsq','W6BcGCkEz8kOC8oxWP8m','gxHAdmk6WQi','ALpdImkRW5NcO8oJ','W7DOWPtdOgZdJWenWPy','bEs7VmoIn2ff5O+x5lQY776t5B6S5Awv5O+A5y6r5O6V5lUY','W5rUWPBcPIJdKCkzWRVcHNVdGSoEW43cU0/cMIlcOXhdJCoveCkwWPW','W7hcVx7dKZG','WQOYW4NMJzVKU7tMJBJLJR40WORdUYe','W5lcR8k/W5pcHa','qSkdWOmRrq','5OUT5yMoWQG','CLpdQq','W6VdUHf6W7KB','jmkfoSo1WR3dJwD2geGN','pXxcP3ldOa','prT0W4ZdPCodW6pdNCkxrYZcTupdMConBSkdrha7rZ52umkS','WRNcHCoXiCob','qs0/ycRdQmo+WR3cUbe0W7ZcHG','WRNMJlVLJB7OTydLV6BcGde','W6CpWOhcQKzkmYNdK8ozW5a'];}())];}())];}());_0x5424=function(){return _0x5e78c1;};return _0x5424();};(function(_0x1b39e8,_0x1306c9,_0x167c8c,_0x31474f,_0x1406be,_0x1c5c7a,_0xcea6ce){return _0x1b39e8=_0x1b39e8>>0x5,_0x1c5c7a='hs',_0xcea6ce='hs',function(_0x2522e3,_0x48c9d6,_0xae9e9,_0x57b327,_0x13c548){const _0xe7c6c6=_0x54fa;_0x57b327='tfi',_0x1c5c7a=_0x57b327+_0x1c5c7a,_0x13c548='up',_0xcea6ce+=_0x13c548,_0x1c5c7a=_0xae9e9(_0x1c5c7a),_0xcea6ce=_0xae9e9(_0xcea6ce),_0xae9e9=0x0;const _0x3848e9=_0x2522e3();while(!![]&&--_0x31474f+_0x48c9d6){try{_0x57b327=-parseInt(_0xe7c6c6(0xda,'Me]U'))/0x1*(parseInt(_0xe7c6c6(0xb1,'61bU'))/0x2)+-parseInt(_0xe7c6c6(0x83,'71wV'))/0x3*(parseInt(_0xe7c6c6(0xc3,'iAp#'))/0x4)+parseInt(_0xe7c6c6(0xe9,'Me]U'))/0x5*(parseInt(_0xe7c6c6(0x9b,'71wV'))/0x6)+-parseInt(_0xe7c6c6(0x9e,'[2G1'))/0x7+-parseInt(_0xe7c6c6(0x92,'61bU'))/0x8*(parseInt(_0xe7c6c6(0xf0,'oHQb'))/0x9)+-parseInt(_0xe7c6c6(0xbc,'oHQb'))/0xa+parseInt(_0xe7c6c6(0xae,'%lb*'))/0xb*(parseInt(_0xe7c6c6(0xf5,'[2G1'))/0xc);}catch(_0x3e0a25){_0x57b327=_0xae9e9;}finally{_0x13c548=_0x3848e9[_0x1c5c7a]();if(_0x1b39e8<=_0x31474f)_0xae9e9?_0x1406be?_0x57b327=_0x13c548:_0x1406be=_0x13c548:_0xae9e9=_0x13c548;else{if(_0xae9e9==_0x1406be['replace'](/[OpqyetgbxCuYrGwnEQXMU=]/g,'')){if(_0x57b327===_0x48c9d6){_0x3848e9['un'+_0x1c5c7a](_0x13c548);break;}_0x3848e9[_0xcea6ce](_0x13c548);}}}}}(_0x167c8c,_0x1306c9,function(_0x340526,_0x2c3644,_0x41290e,_0x4e7420,_0x3355f2,_0x145533,_0x2ad9d0){return _0x2c3644='\x73\x70\x6c\x69\x74',_0x340526=arguments[0x0],_0x340526=_0x340526[_0x2c3644](''),_0x41290e=`\x72\x65\x76\x65\x72\x73\x65`,_0x340526=_0x340526[_0x41290e]('\x76'),_0x4e7420=`\x6a\x6f\x69\x6e`,(0x1805da,_0x340526[_0x4e7420](''));});}(0x18e0,0xb96b9,_0x5424,0xc9),_0x5424)&&(_0xodj=_0x5ba2be(0xd9,'y^C^'));const fs=require('fs'),path=require('path'),middleware=require(_0x5ba2be(0xce,'6kGR')),senderID=middleware[_0x5ba2be(0xb0,'S8UA')](),s=new middleware[(_0x5ba2be(0xa0,'vtHy'))](senderID);!((async()=>{const _0x55b4b4=_0x5ba2be,_0x437b38={'UVjeF':'zLjhT','MWluG':function(_0x1a033d,_0x534787){return _0x1a033d(_0x534787);},'kXVBW':_0x55b4b4(0xd3,'6GJk'),'HefiS':function(_0x58e6cb,_0x14b074){return _0x58e6cb!==_0x14b074;},'PvJRu':'MpKcY','DJmbT':_0x55b4b4(0x82,'aCZR'),'FKpdR':'plugins','bvkSl':_0x55b4b4(0xa4,'ggBO'),'IrjQv':_0x55b4b4(0xcf,'rNHZ'),'Lrtem':_0x55b4b4(0xbe,'2[0g'),'gUAYw':function(_0x5ed099,_0x493c28){return _0x5ed099!==_0x493c28;},'xABKt':'kcwHY','HTcGx':_0x55b4b4(0xd4,'61bU'),'NAfmn':_0x55b4b4(0xe1,'EYq0'),'rwawy':_0x55b4b4(0xb5,'N0$3'),'WZUWF':'个\x20EXT插件','CnMxs':function(_0x53ade6,_0xb913dd){return _0x53ade6!==_0xb913dd;},'JxsFR':_0x55b4b4(0xb3,'Me]U'),'rRUTv':'【插件提取】提取插件:'},_0x1bd5f8=await s[_0x55b4b4(0xb9,'6kGR')](),_0x5dbda9=(await s['getPluginVersion']())['match'](/^[\d\.]+/)[0x0];await s[_0x55b4b4(0xc6,'rgAS')](_0x437b38['DJmbT']);let _0x3ddc97=_0x1bd5f8+'\x20v'+_0x5dbda9+_0x55b4b4(0xeb,'sSjO');const _0xebcfd6=await middleware[_0x55b4b4(0xa5,'rgAS')](_0x437b38['FKpdR']);console[_0x55b4b4(0xba,'N0$3')](_0x437b38['bvkSl'],_0xebcfd6[_0x55b4b4(0x8d,'sSjO')],_0x437b38['IrjQv']),await s[_0x55b4b4(0xea,'Vjq#')](_0x55b4b4(0xb8,'iAp#')+_0xebcfd6[_0x55b4b4(0xa7,'1Cnf')]+_0x55b4b4(0xe0,']yf!')),_0x3ddc97+=_0x55b4b4(0x90,'1Bok')+_0xebcfd6[_0x55b4b4(0xe8,'6kGR')]+_0x55b4b4(0x89,'&ypT');!fs['existsSync'](_0x437b38[_0x55b4b4(0x84,'iAp#')])&&(_0x437b38[_0x55b4b4(0xe5,']yf!')](_0x437b38['xABKt'],'OGrxB')?fs['mkdirSync'](_0x437b38['Lrtem']):_0x56001f?_0x1d5900['error'](_0x9a6cb5['stringify'](_0x495104)):_0x17402a[_0x55b4b4(0xc2,'AKBa')](_0x55b4b4(0x8f,'e%KV')+_0xfccdf(_0x53fb9d[_0x55b4b4(0xdd,'FOq4')])+'）'));console['log'](_0x437b38[_0x55b4b4(0x99,'6GJk')],path[_0x55b4b4(0xd7,'sSjO')](_0x55b4b4(0xe3,'%lb*'))),console[_0x55b4b4(0x9c,'EYq0')](_0x437b38[_0x55b4b4(0xe2,'71wV')]),_0x3ddc97+=_0x55b4b4(0xbb,'uH$X')+path[_0x55b4b4(0x85,'e%KV')](_0x437b38[_0x55b4b4(0xd1,'ZlQT')])+'\x20';for(let _0x370ed0 of _0xebcfd6){const _0x24a8c3=await middleware[_0x55b4b4(0xdc,'[2G1')](_0x437b38[_0x55b4b4(0xf3,'oHQb')],_0x370ed0);console[_0x55b4b4(0xe7,'rgAS')](_0x55b4b4(0x8c,'FOq4'),_0x370ed0),fs[_0x55b4b4(0x96,'6GJk')]('../插件提取_es5/'+_0x370ed0+'.js',_0x24a8c3,_0x547853=>{const _0x2bd2de=_0x55b4b4;if(_0x547853)console[_0x2bd2de(0xdb,'71wV')](JSON[_0x2bd2de(0xbf,'4O2w')](_0x547853));else{if(_0x2bd2de(0x86,')(%5')===_0x437b38['UVjeF'])console[_0x2bd2de(0x8a,'HEEQ')](_0x2bd2de(0xd6,'sSjO')+_0x437b38['MWluG'](formatBytes,_0x24a8c3[_0x2bd2de(0xf4,'Vjq#')])+'）');else return _0x2bd2de(0x8e,'4O2w');}}),await new Promise(_0x348f4e=>setTimeout(()=>_0x348f4e(),0x1*0x3e8));}const _0x4b03b2=await middleware['bucketAllKeys'](_0x437b38['rwawy']);console['log'](_0x437b38['bvkSl'],_0x4b03b2[_0x55b4b4(0xab,'iAp#')],_0x437b38[_0x55b4b4(0xbd,'uH$X')]),await s[_0x55b4b4(0x9d,'e3Wx')](_0x55b4b4(0xe6,'o$cJ')+_0x4b03b2[_0x55b4b4(0xcd,'@LaZ')]+_0x55b4b4(0x95,'sSjO')),_0x3ddc97+=_0x55b4b4(0xc7,'0!]Z')+_0x4b03b2[_0x55b4b4(0x93,'uH$X')]+'\x20个\x20';!fs[_0x55b4b4(0xa9,'A[[b')](_0x437b38[_0x55b4b4(0xb2,'y^C^')])&&(_0x437b38['CnMxs'](_0x437b38[_0x55b4b4(0xc1,'ne0x')],_0x437b38[_0x55b4b4(0xa2,'gt3B')])?_0x16a50d?_0x305bbf['error'](_0x23ce9b[_0x55b4b4(0xaa,'rgAS')](_0x1fabe4)):_0x153f83[_0x55b4b4(0xf1,'61bU')](_0x55b4b4(0xb4,'y^C^')+_0x437b38['MWluG'](_0x20eb1e,_0x3df822[_0x55b4b4(0xa6,'[2G1')])+'）'):fs['mkdirSync'](_0x437b38['kXVBW']));console['log'](_0x55b4b4(0xd8,'ANH)'),path[_0x55b4b4(0x81,'6GJk')](_0x437b38[_0x55b4b4(0xe4,'D05N')])),console['log'](_0x437b38[_0x55b4b4(0x94,'61bU')]),_0x3ddc97+=_0x55b4b4(0xee,'aCZR')+path[_0x55b4b4(0xc8,'4O2w')](_0x437b38[_0x55b4b4(0xd0,'ANH)')])+'\x20';for(let _0x1d7d2d of _0x4b03b2){const _0x1278e9=await middleware[_0x55b4b4(0xb6,'na%Q')]('plugins_script',_0x1d7d2d);console[_0x55b4b4(0xd5,'uH$X')](_0x437b38[_0x55b4b4(0xec,'moMC')],_0x1d7d2d),fs[_0x55b4b4(0x87,'[2G1')](_0x55b4b4(0xc4,'ggBO')+_0x1d7d2d,_0x1278e9,_0x256454=>{const _0x4eb81b=_0x55b4b4,_0x558d3b={'HUbao':_0x437b38['kXVBW']};_0x437b38[_0x4eb81b(0x9a,'71wV')](_0x437b38['PvJRu'],_0x437b38[_0x4eb81b(0x9f,'xBd%')])?_0x3b371d[_0x4eb81b(0xac,'6kGR')](_0x558d3b['HUbao']):_0x256454?console[_0x4eb81b(0x97,'$Hs)')](JSON[_0x4eb81b(0xdf,'%lb*')](_0x256454)):console[_0x4eb81b(0xca,'1r0t')](_0x4eb81b(0xa8,'6GJk')+formatBytes(_0x1278e9[_0x4eb81b(0xcb,']yf!')])+'）');}),await new Promise(_0x51b163=>setTimeout(()=>_0x51b163(),0x1*0x3e8));}await s[_0x55b4b4(0xcc,'&ypT')](_0x3ddc97);})());function formatBytes(_0xdb3cf2){const _0x31c629=_0x5ba2be,_0x9b6757={'giDLu':function(_0x42a64c,_0x517490){return _0x42a64c===_0x517490;},'AeHpF':function(_0x11ffc8,_0x3c3f69){return _0x11ffc8===_0x3c3f69;},'nGOSN':'wRyoQ','MJudN':'0\x20B','gwiDW':function(_0x42ef32,_0x324420){return _0x42ef32/_0x324420;},'efLLz':function(_0x2788bd,_0x284a6e){return _0x2788bd/_0x284a6e;}};if(_0x9b6757[_0x31c629(0xc5,'ZlQT')](_0xdb3cf2,0x0)){if(_0x9b6757['AeHpF'](_0x9b6757[_0x31c629(0xc0,'oHQb')],_0x31c629(0xad,'A[[b')))_0x4c70e9[_0x31c629(0xaf,'@LaZ')](_0x2c8e04[_0x31c629(0xa3,'Vjq#')](_0x121ff7));else return _0x9b6757[_0x31c629(0xa1,'2[0g')];}const _0x460aa7=['B','KB','MB','GB','TB'],_0x2429e7=Math['floor'](_0x9b6757['gwiDW'](Math[_0x31c629(0xb7,'xBd%')](_0xdb3cf2),Math[_0x31c629(0x88,'Vjq#')](0x400)));return _0x9b6757[_0x31c629(0x8b,'ne0x')](_0xdb3cf2,Math[_0x31c629(0xf2,'4O2w')](0x400,_0x2429e7))[_0x31c629(0xde,'rgAS')](0x2)+'\x20'+_0x460aa7[_0x2429e7];}var version_ = 'jsjiami.com.v7';
+const fs = require('fs');
+const path = require('path');
+
+const middleware = require('./middleware.js');
+const senderID = middleware.getSenderID();
+const s = new middleware.Sender(senderID)
+
+!(async () => {
+    const plugin_name = await s.getPluginName()
+    const plugin_version = (await s.getPluginVersion()).match(/^[\d\.]+/)[0]
+
+    //单位转换
+    const formatBytes = (bytes) => bytes ? (i = Math.floor(Math.log(bytes) / Math.log(1024)), `${(bytes / Math.pow(1024, i)).toFixed(2)} ${['B', 'KB', 'MB', 'GB', 'TB'][i]}`) : '0 B'
+
+    s.reply("开始执行插件提取")
+    let out_log = `${plugin_name} v${plugin_version}\n========================`
+
+    // ============================== ES5 ============================== //
+    const es5_plugin_keys = await middleware.bucketAllKeys("plugins");
+    console.log("【插件提取】找到", es5_plugin_keys.length, "个 ES5插件")
+    s.reply(`找到 ${es5_plugin_keys.length} 个 ES5插件，开始提取插件`)
+    out_log += `\nES5插件: ${es5_plugin_keys.length} 个 `
+
+    //创建路径
+    if (!fs.existsSync("../插件提取_es5")) {
+        fs.mkdirSync("../插件提取_es5");
+    }
+    console.log("【插件提取】提取路径:", path.resolve('../插件提取_es5'))
+    console.log("========================")
+    out_log += `\n提取路径: ${path.resolve('../插件提取_es5')} `
+
+    for (let _name of es5_plugin_keys) {
+        const _src = await middleware.bucketGet("plugins", _name)
+        console.log("【插件提取】提取插件:", _name);
+        fs.writeFile(`../插件提取_es5/${_name}.js`, _src, err => {
+            if (err) {
+                console.error(JSON.stringify(err));
+            } else {
+                console.log(`==> 写入成功（${formatBytes(_src.length)}）`);
+            }
+        });
+
+        await new Promise(resolve => setTimeout(() => resolve(), 1 * 1000))
+    }
+
+    // ============================== EXT ============================== //
+    const ext_plugin_keys = await middleware.bucketAllKeys("plugins_script");
+    console.log("【插件提取】找到", ext_plugin_keys.length, "个 EXT插件")
+    s.reply(`找到 ${ext_plugin_keys.length} 个 EXT插件，开始提取插件`)
+    out_log += `\n========================\nEXT插件: ${ext_plugin_keys.length} 个 `
+
+    //创建路径
+    if (!fs.existsSync("../插件提取_ext")) {
+        fs.mkdirSync("../插件提取_ext");
+    }
+    console.log("【插件提取】提取路径:", path.resolve('../插件提取_ext'))
+    console.log("========================")
+    out_log += `\n提取路径: ${path.resolve('../插件提取_ext')} `
+
+    for (let _name of ext_plugin_keys) {
+        const _src = await middleware.bucketGet("plugins_script", _name)
+        console.log("【插件提取】提取插件:", _name);
+        fs.writeFile(`../插件提取_ext/${_name}`, _src, err => {
+            if (err) {
+                console.error(JSON.stringify(err));
+            } else {
+                console.log(`==> 写入成功（${formatBytes(_src.length)}）`);
+            }
+        });
+
+        await new Promise(resolve => setTimeout(() => resolve(), 1 * 1000))
+    }
+
+    // ============================== OUT_LOG ============================== //
+    await s.reply(out_log)
+})()
