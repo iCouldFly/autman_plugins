@@ -1,5 +1,6 @@
 const axios = require('axios');
-const url = "http://localhost:8080/otto"
+axios.defaults.baseURL = "http://localhost:8080/otto";
+
 /**
  * 获取本地服务响应
  * @param {string} path 本地服务路由
@@ -15,26 +16,24 @@ const url = "http://localhost:8080/otto"
 //         }
 //       }),
 //       new Promise((_, reject) =>
-//         setTimeout(() => reject(new Error(path + 'Request timeout')), timeout)
+//         setTimeout(() => reject(new Error('Request timeout')), timeout)
 //       )
 //     ]);
 //     if (response.data.code == 200 && ('data' in response.data)) {
 //       return response.data.data;
 //     } else {
-//       console.error(path + 'Error fetching response:', response.data);
+//       console.error('Error fetching response:', response.data);
 //       return null;
 //     };
 //   } catch (error) {
-//     console.error(path + 'Error fetching response:', error);
+//     console.error('Error fetching response:', error);
 //     throw error;
 //   }
 // }
-
-function accessLocalService(path, body, timeout) {
-  return axios.post(url + path, body, { headers: { 'Content-Type': 'application/json' }, timeout: timeout })
+const accessLocalService = (path, body = null, timeout = 5000) =>
+  axios.post(path, body, { headers: { 'Content-Type': 'application/json' }, timeout: timeout })
     .then(({ status, statusText, headers, config, request, data }) => data?.data)
-    .catch(({ message, name, code, config, request, response }) => console.error(path, name, code, message))
-}
+    .catch(({ message, name, code, config, request, response }) => new Error({ path, name, code, message }));
 
 /**
  * 消息监听函数和回调函数
@@ -43,7 +42,7 @@ function accessLocalService(path, body, timeout) {
  * @param {string} userid 用户ID
  * @param {function} callback 回调函数
  */
-function addMsgListener(imtype, chatid, userid, callback) {
+const addMsgListener = (imtype, chatid, userid, callback) => {
   const options = {
     method: 'POST',
     body: JSON.stringify({ "imtype": imtype, "chatid": chatid, "userid": userid }),
@@ -67,19 +66,23 @@ function addMsgListener(imtype, chatid, userid, callback) {
 }
 
 // 获取发送者ID
-function getSenderID() {
-  console.log("getSenderID:",process.argv);
-  // console.log(process.argv);
-  const arg = process.argv[1];
-  return arg
-}
+const getSenderID = () => console.log(process.argv) || process.argv[1];
 
 
-function render(template, selector, data) {
-  return accessLocalService(`/render`, { template: template, selector: selector, data: data }, 5000);
-}
+const render = (template, selector, data) =>
+  accessLocalService(
+    `/render`,
+    {
+      file: "",//使用内置模板时
+      source: template,//使用自定义模板时填写代码
+      selector: selector,//选择器，即渲染哪部分
+      data: data//数据
+    },
+    5000
+  );
+
 // 推送消息
-function push(imType, groupCode, userID, title, content) {
+const push = (imType, groupCode, userID, title, content) =>
   accessLocalService(`/push`,
     {
       imType: imType,
@@ -87,306 +90,222 @@ function push(imType, groupCode, userID, title, content) {
       userID: userID,
       title: title,
       content: content,
-    }, 5000);
-}
+    },
+    5000
+  );
 
 // 获取机器人名称
-function name() {
-  return accessLocalService(`/name`, null, 5000);
-}
+const name = () => accessLocalService(`/name`);
 
 // 获取机器id
-function machineId() {
-  return accessLocalService(`/machineId`, null, 5000);
-}
+const machineId = () => accessLocalService(`/machineId`);
 
 // 获取机器人版本
-function version() {
-  return accessLocalService(`/version`, null, 5000);
-}
+const version = () => accessLocalService(`/version`);
 
 // 获取数据库数据
-function get(key) {
-  return accessLocalService(`/get`, { key: key }, 5000);
-}
+const get = (key) => accessLocalService(`/get`, { key: key });
 
 // 设置数据库数据
-function set(key, value) {
-  return accessLocalService(`/set`, { key: key, value: value }, 5000);
-}
+const set = (key, value) => accessLocalService(`/set`, { key: key, value: value });
 
 // 删除数据库数据
-function del(key) {
-  return accessLocalService(`/del`, { key: key }, 5000);
-}
+const del = (key) => accessLocalService(`/del`, { key: key });
 
 // 获取指定数据库指定的key值
-function bucketGet(bucket, key) {
-  return accessLocalService(`/bucketGet`, { bucket: bucket, key: key }, 5000);
-}
+const bucketGet = (bucket, key) => accessLocalService(`/bucketGet`, { bucket: bucket, key: key });
 
 // 设置指定数据库指定的key值
-function bucketSet(bucket, key, value) {
-  return accessLocalService(`/bucketSet`, { bucket: bucket, key: key, value: value }, 5000);
-}
+const bucketSet = (bucket, key, value) => accessLocalService(`/bucketSet`, { bucket: bucket, key: key, value: value });
 
 // 删除指定数据库指定key的值
-function bucketDel(bucket, key) {
-  return accessLocalService(`/bucketDel`, { bucket: bucket, key: key }, 5000);
-}
+const bucketDel = (bucket, key) => accessLocalService(`/bucketDel`, { bucket: bucket, key: key });
 
 // 获取指定数据库所有值为value的keys
-async function bucketKeys(bucket, value) {
-  return await accessLocalService(`/bucketKeys`, { bucket: bucket, value: value }, 5000);
-}
+const bucketKeys = (bucket, value) => accessLocalService(`/bucketKeys`, { bucket: bucket, value: value });
 
 // 获取指定数据桶内所有的key集合
-async function bucketAllKeys(bucket) {
-  return await accessLocalService(`/bucketAllKeys`, { bucket: bucket }, 5000);
-}
+const bucketAllKeys = (bucket) => accessLocalService(`/bucketAllKeys`, { bucket: bucket });
 
 // 获取指定数据桶内所有的key value集合
-async function bucketAll(bucket) {
-  return await accessLocalService(`/bucketAll`, { bucket: bucket }, 5000);
-}
+const bucketAll = (bucket) => accessLocalService(`/bucketAll`, { bucket: bucket });
 
 // 通知管理员
-function notifyMasters(content, imtypes = []) {
-  return accessLocalService(`/notifyMasters`, { content: content, imtypes: imtypes }, 5000);
-}
+const notifyMasters = (content, imtypes = []) => accessLocalService(`/notifyMasters`, { content: content, imtypes: imtypes });
 
 // 当前系统咖啡码激活状态
-function coffee() {
-  return accessLocalService(`/coffee`, null, 5000);
-}
+const coffee = () => accessLocalService(`/coffee`);
 
 // 京东、淘宝、拼多多转链推广
-function spread(msg) {
-  return accessLocalService(`/spread`, { msg: msg }, 5000);
-}
+const spread = (msg) => accessLocalService(`/spread`, { msg: msg });
 
 class Sender {
   constructor(senderID) {
     // 发送者ID,格式：in64时间戳,
     this.senderID = senderID;
+
     // 获取指定数据库指定的key值
-    this.bucketGet = function (bucket, key) {
-      return accessLocalService(`/bucketGet`, { senderid: senderID, bucket: bucket, key: key }, 5000);
-    }
+    this.bucketGet = (bucket, key) => accessLocalService(`/bucketGet`, { senderid: senderID, bucket: bucket, key: key });
 
     // 设置指定数据库指定的key值
-    this.bucketSet = function (bucket, key, value) {
-      return accessLocalService(`/bucketSet`, { senderid: senderID, bucket: bucket, key: key, value: value }, 5000);
-    }
+    this.bucketSet = (bucket, key, value) => accessLocalService(`/bucketSet`, { senderid: senderID, bucket: bucket, key: key, value: value });
 
     // 删除指定数据库指定key的值
-    this.bucketDel = function (bucket, key) {
-      return accessLocalService(`/bucketDel`, { senderid: senderID, bucket: bucket, key: key }, 5000);
-    }
+    this.bucketDel = (bucket, key) => accessLocalService(`/bucketDel`, { senderid: senderID, bucket: bucket, key: key });
 
     // 获取指定数据库所有值为value的keys
-    this.bucketKeys = async function (bucket, value) {
-      return await accessLocalService(`/bucketKeys`, { senderid: senderID, bucket: bucket, value: value }, 5000);
-    }
+    this.bucketKeys = (bucket, value) => accessLocalService(`/bucketKeys`, { senderid: senderID, bucket: bucket, value: value });
 
     // 获取指定数据桶内所有的key集合
-    this.bucketAllKeys = async function (bucket) {
-      return await accessLocalService(`/bucketAllKeys`, { senderid: senderID, bucket: bucket }, 5000);
-    }
+    this.bucketAllKeys = (bucket) => accessLocalService(`/bucketAllKeys`, { senderid: senderID, bucket: bucket });
 
     // 获取指定数据桶内所有的key value集合
-    this.bucketAll = async function (bucket) {
-      return await accessLocalService(`/bucketAll`, { senderid: senderID, bucket: bucket }, 5000);
-    }
+    this.bucketAll = (bucket) => accessLocalService(`/bucketAll`, { senderid: senderID, bucket: bucket });
 
-    this.setContinue = function () {
-      return accessLocalService(`/continue`, { senderid: senderID }, 5000);
-    }
+    this.setContinue = () => accessLocalService(`/continue`, { senderid: senderID });
 
     // 路由路径
-    this.getRouterPath = function () {
-      return accessLocalService(`/getRouterPath`, { senderid: senderID }, 5000);
-    }
+    this.getRouterPath = () => accessLocalService(`/getRouterPath`, { senderid: senderID });
+
     // 路由参数
-    this.getRouterParams = function () {
-      return accessLocalService(`/getRouterParams`, { senderid: senderID }, 5000);
-    }
+    this.getRouterParams = () => accessLocalService(`/getRouterParams`, { senderid: senderID });
+
     // 路由方法
-    this.getRouterMethod = function () {
-      return accessLocalService(`/getRouterMethod`, { senderid: senderID }, 5000);
-    }
+    this.getRouterMethod = () => accessLocalService(`/getRouterMethod`, { senderid: senderID });
+
     // 路由请求头
-    this.getRouterHeaders = function () {
-      return accessLocalService(`/getRouterHeaders`, { senderid: senderID }, 5000);
-    }
+    this.getRouterHeaders = () => accessLocalService(`/getRouterHeaders`, { senderid: senderID });
+
     // 路由cookies
-    this.getRouterCookies = function () {
-      return accessLocalService(`/getRouterCookies`, { senderid: senderID }, 5000);
-    }
+    this.getRouterCookies = () => accessLocalService(`/getRouterCookies`, { senderid: senderID });
+    
     // 路由请求体
-    this.getRouterBody = function () {
-      return accessLocalService(`/getRouterBody`, { senderid: senderID }, 5000);
-    }
+    this.getRouterBody = () => accessLocalService(`/getRouterBody`, { senderid: senderID });
 
     // 获取发送者渠道
-    this.getImtype = function () {
-      return accessLocalService(`/getImtype`, { senderid: senderID }, 5000);
-    }
+    this.getImtype = () => accessLocalService(`/getImtype`, { senderid: senderID });
 
     // 获取当前用户id
     this.getUserID = function () {//注意：这里是base64编码后的userid
-      return accessLocalService(`/getUserID`, { senderid: senderID }, 5000);
+      return accessLocalService(`/getUserID`, { senderid: senderID });
     }
 
     // 获取当前用户名
-    this.getUserName = function () {
-      return accessLocalService(`/getUserName`, { senderid: senderID }, 5000);
-    }
+    this.getUserName = () => accessLocalService(`/getUserName`, { senderid: senderID });
 
     // 获取用户头像url
-    this.getUserAvatarUrl = function () {
-      return accessLocalService(`/getUserAvatarUrl`, { senderid: senderID }, 5000);
-    }
+    this.getUserAvatarUrl = () => accessLocalService(`/getUserAvatarUrl`, { senderid: senderID });
 
     // 获取当前群组id
-    this.getChatID = function () {
-      return accessLocalService(`/getChatID`, { senderid: senderID }, 5000);
-    }
+    this.getChatID = () => accessLocalService(`/getChatID`, { senderid: senderID });
 
     // 获取当前群组名称
-    this.getGroupName = function () {
-      return accessLocalService(`/getGroupName`, { senderid: senderID }, 5000);
-    }
+    this.getGroupName = () => accessLocalService(`/getGroupName`, { senderid: senderID });
 
     // 是否管理员
-    this.isAdmin = function () {
-      return accessLocalService(`/isAdmin`, { senderid: senderID }, 5000);
-    }
+    this.isAdmin = () => accessLocalService(`/isAdmin`, { senderid: senderID });
 
     // 获取消息
-    this.getMessage = function () {
-      return accessLocalService(`/getMessage`, { senderid: senderID }, 5000);
-    }
+    this.getMessage = () => accessLocalService(`/getMessage`, { senderid: senderID });
 
     // 获取消息ID
-    this.getMessageID = function () {
-      return accessLocalService(`/getMessageID`, { senderid: senderID }, 5000);
-    }
+    this.getMessageID = () => accessLocalService(`/getMessageID`, { senderid: senderID });
 
     // 获取历史消息ids
-    this.getHistoryMessageIDs = function (number) {
-      return accessLocalService(`/getHistory`, { senderid: senderID, number: number }, 5000);
-    }
+    this.getHistoryMessageIDs = (number) => accessLocalService(`/getHistory`, { senderid: senderID, number: number });
 
     // 撤回消息
-    this.recallMessage = function (messageid) {
-      return accessLocalService(`/recallMessage`, { senderid: senderID, messageid: messageid }, 5000);
-    }
+    this.recallMessage = (messageid) => accessLocalService(`/recallMessage`, { senderid: senderID, messageid: messageid });
 
     // 模拟新消息输入，即将消息发送者的消息修改为新的内容，重新送往autMan内部处理
-    this.breakIn = function (content) {
-      accessLocalService(`/breakIn`, { senderid: senderID, content: content }, 5000);
+    this.breakIn = (content) => {
+      accessLocalService(`/breakIn`, { senderid: senderID, content: content });
     }
 
     // 获取匹配的文本参数
-    this.param = function (index) {
-      return accessLocalService(`/param`, { senderid: senderID, index: index }, 5000);
-    }
+    this.param = (index) => accessLocalService(`/param`, { senderid: senderID, index: index });
 
     // 回复文本消息
-    this.reply = function (text) {
-      return accessLocalService(`/sendText`, { senderid: senderID, text: text }, 5000);
-    }
+    this.reply = (text) => accessLocalService(`/sendText`, { senderid: senderID, text: text });
 
     // 编辑消息
-    this.edit = function (text) {
-      accessLocalService(`/editText`, { senderid: senderID, text: text }, 5000);
+    this.edit = (text) => {
+      accessLocalService(`/editText`, { senderid: senderID, text: text });
     }
 
     //回复markdown消息
-    this.replyMarkdown = function (markdown) {
-      return accessLocalService(`/sendMarkdown`, { senderid: senderID, markdown: markdown }, 5000);
-    }
+    this.replyMarkdown = (markdown) => accessLocalService(`/sendMarkdown`, { senderid: senderID, markdown: markdown });
 
     // 回复图片消息
-    this.replyImage = function (imageUrl) {
-      return accessLocalService(`/sendImage`, { senderid: senderID, imageurl: imageUrl }, 5000);
-    }
+    this.replyImage = (imageUrl) => accessLocalService(`/sendImage`, { senderid: senderID, imageurl: imageUrl });
 
     // 回复语音消息
-    this.replyVoice = function (voiceUrl) {
-      return accessLocalService(`/sendVoice`, { senderid: senderID, voiceurl: voiceUrl }, 5000);
-    }
+    this.replyVoice = (voiceUrl) => accessLocalService(`/sendVoice`, { senderid: senderID, voiceurl: voiceUrl });
 
     // 回复视频消息
-    this.replyVideo = function (videoUrl) {
-      return accessLocalService(`/sendVideo`, { senderid: senderID, videourl: videoUrl }, 5000);
-    }
+    this.replyVideo = (videoUrl) => accessLocalService(`/sendVideo`, { senderid: senderID, videourl: videoUrl });
 
     //等待用户输入
-    this.listen = function (timeout) {
-      return accessLocalService(`/listen`, { senderid: senderID, timeout: timeout }, timeout);
-    }
+    this.listen = (timeout) => accessLocalService(`/listen`, { senderid: senderID, timeout: timeout }, timeout);
 
     //等待用户输入,timeout为超时时间，单位为毫秒,recallDuration为撤回用户输入的延迟时间，单位为毫秒，0是不撤回，forGroup为bool值true或false，是否接收群聊所有成员的输入
-    this.input = function (timeout, recallDuration, forGroup) {
-      return accessLocalService(`/input`, { senderid: senderID, time: timeout, recallDuration: recallDuration, forGroup: forGroup }, timeout);
-    }
+    this.input = (timeout, recallDuration, forGroup) => accessLocalService(
+      `/input`,
+      {
+        senderid: senderID,
+        time: timeout,
+        recallDuration: recallDuration,
+        forGroup: forGroup
+      },
+      timeout
+    );
 
     //等待支付
-    this.waitPay = function (exitcode, timeout) {
-      return accessLocalService(`/waitPay`, { senderid: senderID, exitcode: exitcode, timeout: timeout }, timeout);
-    }
+    this.waitPay = (exitcode, timeout) => accessLocalService(`/waitPay`, { senderid: senderID, exitcode: exitcode, timeout: timeout }, timeout);
 
     //是否处于等待支付状态
-    this.atWaitPay = function () {
-      return accessLocalService(`/atWaitPay`, { senderid: senderID }, 5000);
-    }
+    this.atWaitPay = () => accessLocalService(`/atWaitPay`, { senderid: senderID });
 
     //邀请入群
-    this.groupInviteIn = function (friend, group) {
-      accessLocalService(`/groupInviteIn`, { senderid: senderID, friend: friend, group: group }, 5000);
+    this.groupInviteIn = (friend, group) => {
+      accessLocalService(`/groupInviteIn`, { senderid: senderID, friend: friend, group: group });
     }
 
     //踢群
-    this.groupKick = function (userid) {
-      accessLocalService(`/groupKick`, { senderid: senderID, userid: userid }, 5000);
+    this.groupKick = (userid) => {
+      accessLocalService(`/groupKick`, { senderid: senderID, userid: userid });
     }
 
     //禁言
-    this.groupBan = function (userid, timeout) {
-      accessLocalService(`/groupBan`, { senderid: senderID, userid: userid, timeout: timeout }, 5000);
+    this.groupBan = (userid, timeout) => {
+      accessLocalService(`/groupBan`, { senderid: senderID, userid: userid, timeout: timeout });
     }
 
     //解除禁言
-    this.groupUnban = function (userid) {
-      accessLocalService(`/groupUnban`, { senderid: senderID, userid: userid }, 5000);
+    this.groupUnban = (userid) => {
+      accessLocalService(`/groupUnban`, { senderid: senderID, userid: userid });
     }
 
     //全员禁言
     this.groupWholeBan = function () {
-      accessLocalService(`/groupWholeBan`, { senderid: senderID }, 5000);
+      accessLocalService(`/groupWholeBan`, { senderid: senderID });
     }
 
     //解除全员禁言
     this.groupWholeUnban = function () {
-      accessLocalService(`/groupWholeUnban`, { senderid: senderID }, 5000);
+      accessLocalService(`/groupWholeUnban`, { senderid: senderID });
     }
 
     //发送群公告
-    this.groupNoticeSend = function (notice) {
-      accessLocalService(`/groupNoticeSend`, { senderid: senderID, notice: notice }, 5000);
+    this.groupNoticeSend = (notice) => {
+      accessLocalService(`/groupNoticeSend`, { senderid: senderID, notice: notice });
     }
 
     //获取当前处理流程的插件名
-    this.getPluginName = function () {
-      return accessLocalService(`/getPluginName`, { senderid: senderID }, 5000);
-    }
+    this.getPluginName = () => accessLocalService(`/getPluginName`, { senderid: senderID });
 
     //获取当前处理流程的插件版本
-    this.getPluginVersion = function () {
-      return accessLocalService(`/getPluginVersion`, { senderid: senderID }, 5000);
-    }
+    this.getPluginVersion = () => accessLocalService(`/getPluginVersion`, { senderid: senderID });
 
   };
 }
@@ -394,24 +313,20 @@ class Sender {
 class Cron {
   constructor() {
     // 获取定时指令集合
-    this.getCrons = function () {
-      return accessLocalService(`/croncmdsGet`, 5000);
-    }
+    this.getCrons = () => accessLocalService(`/croncmdsGet`);
     //获取某个定时指令
-    this.getCron = function (id) {
-      return accessLocalService(`/croncmdsGet`, { id: id }, 5000);
-    }
+    this.getCron = (id) => accessLocalService(`/croncmdsGet`, { id: id });
     //添加定时指令,返回id
-    this.addCron = function (cron, cmd, isToSelf, toOthers, memo, disguiseImtype, disguiseGroup, disguiseUser) {
-      accessLocalService(`/croncmdsAdd`, { cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser }, 5000);
+    this.addCron = (cron, cmd, isToSelf, toOthers, memo, disguiseImtype, disguiseGroup, disguiseUser) => {
+      accessLocalService(`/croncmdsAdd`, { cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
     }
     //修改定时指令
-    this.updateCron = function (id, cron, cmd, isToSelf, toOthers, memo) {
-      accessLocalService(`/croncmdsUpd`, { id: id, cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser }, 5000);
+    this.updateCron = (id, cron, cmd, isToSelf, toOthers, memo) => {
+      accessLocalService(`/croncmdsUpd`, { id: id, cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
     }
     //删除定时指令
-    this.delCron = function (id) {
-      accessLocalService(`/croncmdsDel`, { id: id }, 5000);
+    this.delCron = (id) => {
+      accessLocalService(`/croncmdsDel`, { id: id });
     }
   }
 }
