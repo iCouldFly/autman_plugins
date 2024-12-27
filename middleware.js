@@ -1,35 +1,10 @@
 const axios = require('axios');
 axios.defaults.baseURL = "http://localhost:8080/otto";
 
-/**
- * 获取本地服务响应
+/** 获取本地服务响应
  * @param {string} path 本地服务路由
  * @param {number} timeout 超时时间
- * @example
  */
-// async function accessLocalService(path, body, timeout) {
-//   try {
-//     const response = await Promise.race([
-//       axios.post(url + path, body, {
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }),
-//       new Promise((_, reject) =>
-//         setTimeout(() => reject(new Error('Request timeout')), timeout)
-//       )
-//     ]);
-//     if (response.data.code == 200 && ('data' in response.data)) {
-//       return response.data.data;
-//     } else {
-//       console.error('Error fetching response:', response.data);
-//       return null;
-//     };
-//   } catch (error) {
-//     console.error('Error fetching response:', error);
-//     throw error;
-//   }
-// }
 const accessLocalService = (path, body = null, timeout = 5000) =>
   axios.post(path, body, { headers: { 'Content-Type': 'application/json' }, timeout: timeout })
     .then(({ status, statusText, headers, config, request, data }) => data?.data)
@@ -68,7 +43,12 @@ const addMsgListener = (imtype, chatid, userid, callback) => {
 // 获取发送者ID
 const getSenderID = () => console.log(process.argv) || process.argv[1];
 
-
+/** 渲染html
+ * @param {string} template swig 格式 html 模板
+ * @param {string} selector css选择器
+ * @param {object} data 输入数据
+ * @returns {string} base64格式图片数据
+ */
 const render = (template, selector, data) =>
   accessLocalService(
     `/render`,
@@ -178,17 +158,17 @@ class Sender {
 
     // 路由cookies
     this.getRouterCookies = () => accessLocalService(`/getRouterCookies`, { senderid: senderID });
-    
+
     // 路由请求体
     this.getRouterBody = () => accessLocalService(`/getRouterBody`, { senderid: senderID });
 
     // 获取发送者渠道
     this.getImtype = () => accessLocalService(`/getImtype`, { senderid: senderID });
 
-    // 获取当前用户id
-    this.getUserID = function () {//注意：这里是base64编码后的userid
-      return accessLocalService(`/getUserID`, { senderid: senderID });
-    }
+    /** 获取当前用户id
+     * @returns {string} 注意：这里是base64编码后的userid
+     */
+    this.getUserID = () => accessLocalService(`/getUserID`, { senderid: senderID });
 
     // 获取当前用户名
     this.getUserName = () => accessLocalService(`/getUserName`, { senderid: senderID });
@@ -287,14 +267,10 @@ class Sender {
     }
 
     //全员禁言
-    this.groupWholeBan = function () {
-      accessLocalService(`/groupWholeBan`, { senderid: senderID });
-    }
+    this.groupWholeBan = () => accessLocalService(`/groupWholeBan`, { senderid: senderID });
 
     //解除全员禁言
-    this.groupWholeUnban = function () {
-      accessLocalService(`/groupWholeUnban`, { senderid: senderID });
-    }
+    this.groupWholeUnban = () => accessLocalService(`/groupWholeUnban`, { senderid: senderID });
 
     //发送群公告
     this.groupNoticeSend = (notice) => {
