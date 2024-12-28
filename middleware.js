@@ -68,7 +68,7 @@ const push = (imType, groupCode, userID, title, content) =>
       imType: imType,
       groupCode: groupCode,
       userID: userID,
-      title: title,
+      title: title ?? "",
       content: content,
     },
     5000
