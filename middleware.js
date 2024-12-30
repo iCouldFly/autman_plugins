@@ -30,13 +30,9 @@ const addMsgListener = (imtype, chatid, userid, callback) => {
     res.setEncoding('utf8');
     let responseData = '';
 
-    res.on('data', (chunk) => {
-      responseData += chunk;
-    });
+    res.on('data', (chunk) => responseData += chunk;);
 
-    res.on('end', () => {
-      callback(responseData);
-    });
+    res.on('end', () => callback(responseData););
   });
 }
 
@@ -198,9 +194,7 @@ class Sender {
     this.recallMessage = (messageid) => accessLocalService(`/recallMessage`, { senderid: senderID, messageid: messageid });
 
     // 模拟新消息输入，即将消息发送者的消息修改为新的内容，重新送往autMan内部处理
-    this.breakIn = (content) => {
-      accessLocalService(`/breakIn`, { senderid: senderID, content: content });
-    }
+    this.breakIn = (content) => accessLocalService(`/breakIn`, { senderid: senderID, content: content });
 
     // 获取匹配的文本参数
     this.param = (index) => accessLocalService(`/param`, { senderid: senderID, index: index });
@@ -209,9 +203,7 @@ class Sender {
     this.reply = (text) => accessLocalService(`/sendText`, { senderid: senderID, text: text });
 
     // 编辑消息
-    this.edit = (text) => {
-      accessLocalService(`/editText`, { senderid: senderID, text: text });
-    }
+    this.edit = (text) => accessLocalService(`/editText`, { senderid: senderID, text: text });
 
     //回复markdown消息
     this.replyMarkdown = (markdown) => accessLocalService(`/sendMarkdown`, { senderid: senderID, markdown: markdown });
@@ -247,24 +239,16 @@ class Sender {
     this.atWaitPay = () => accessLocalService(`/atWaitPay`, { senderid: senderID });
 
     //邀请入群
-    this.groupInviteIn = (friend, group) => {
-      accessLocalService(`/groupInviteIn`, { senderid: senderID, friend: friend, group: group });
-    }
+    this.groupInviteIn = (friend, group) => accessLocalService(`/groupInviteIn`, { senderid: senderID, friend: friend, group: group });
 
     //踢群
-    this.groupKick = (userid) => {
-      accessLocalService(`/groupKick`, { senderid: senderID, userid: userid });
-    }
+    this.groupKick = (userid) => accessLocalService(`/groupKick`, { senderid: senderID, userid: userid });
 
     //禁言
-    this.groupBan = (userid, timeout) => {
-      accessLocalService(`/groupBan`, { senderid: senderID, userid: userid, timeout: timeout });
-    }
+    this.groupBan = (userid, timeout) => accessLocalService(`/groupBan`, { senderid: senderID, userid: userid, timeout: timeout });
 
     //解除禁言
-    this.groupUnban = (userid) => {
-      accessLocalService(`/groupUnban`, { senderid: senderID, userid: userid });
-    }
+    this.groupUnban = (userid) => accessLocalService(`/groupUnban`, { senderid: senderID, userid: userid });
 
     //全员禁言
     this.groupWholeBan = () => accessLocalService(`/groupWholeBan`, { senderid: senderID });
@@ -273,9 +257,7 @@ class Sender {
     this.groupWholeUnban = () => accessLocalService(`/groupWholeUnban`, { senderid: senderID });
 
     //发送群公告
-    this.groupNoticeSend = (notice) => {
-      accessLocalService(`/groupNoticeSend`, { senderid: senderID, notice: notice });
-    }
+    this.groupNoticeSend = (notice) => accessLocalService(`/groupNoticeSend`, { senderid: senderID, notice: notice });
 
     //获取当前处理流程的插件名
     this.getPluginName = () => accessLocalService(`/getPluginName`, { senderid: senderID });
@@ -293,17 +275,11 @@ class Cron {
     //获取某个定时指令
     this.getCron = (id) => accessLocalService(`/croncmdsGet`, { id: id });
     //添加定时指令,返回id
-    this.addCron = (cron, cmd, isToSelf, toOthers, memo, disguiseImtype, disguiseGroup, disguiseUser) => {
-      accessLocalService(`/croncmdsAdd`, { cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
-    }
+    this.addCron = (cron, cmd, isToSelf, toOthers, memo, disguiseImtype, disguiseGroup, disguiseUser) => accessLocalService(`/croncmdsAdd`, { cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
     //修改定时指令
-    this.updateCron = (id, cron, cmd, isToSelf, toOthers, memo) => {
-      accessLocalService(`/croncmdsUpd`, { id: id, cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
-    }
+    this.updateCron = (id, cron, cmd, isToSelf, toOthers, memo) => accessLocalService(`/croncmdsUpd`, { id: id, cron: cron, cmd: cmd, isToSelf: isToSelf, toOthers: toOthers, memo: memo, disguiseImtype: disguiseImtype, disguiseGroup: disguiseGroup, disguiseUser: disguiseUser });
     //删除定时指令
-    this.delCron = (id) => {
-      accessLocalService(`/croncmdsDel`, { id: id });
-    }
+    this.delCron = (id) => accessLocalService(`/croncmdsDel`, { id: id });
   }
 }
 
