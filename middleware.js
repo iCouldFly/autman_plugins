@@ -204,7 +204,7 @@ class Sender {
     this.param = (index) => accessLocalService(`/param`, { senderid: senderID, index: index });
 
     // 回复文本消息
-    this.reply = (text) => accessLocalService(`/sendText`, { senderid: senderID, text: text });
+    this.reply = (text) => accessLocalService(`/sendText`, { senderid: senderID, text: typeof text === 'string' ? text : JSON.stringify(text) });
 
     // 编辑消息
     this.edit = (text) => accessLocalService(`/editText`, { senderid: senderID, text: text });
