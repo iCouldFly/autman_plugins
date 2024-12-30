@@ -1,12 +1,16 @@
 const axios = require('axios');
-axios.defaults.baseURL = "http://localhost:8080/otto";
+const middlewareAxios = axios.create({
+  'baseURL': 'http://localhost:8080/otto',
+  'timeout': 5000,
+  'headers': { 'Content-Type': 'application/json' },
+})
 
 /** 获取本地服务响应
  * @param {string} path 本地服务路由
  * @param {number} timeout 超时时间
  */
-const accessLocalService = (path, body = null, timeout = 5000) =>
-  axios.post(path, body, { headers: { 'Content-Type': 'application/json' }, timeout: timeout })
+const accessLocalService = (path, body = null, timeout = undefined) =>
+  middlewareAxios.post(path, body, { timeout: timeout })
     .then(({ status, statusText, headers, config, request, data }) => data?.data)
     .catch(({ message, name, code, config, request, response }) => new Error({ path, name, code, message }));
 
