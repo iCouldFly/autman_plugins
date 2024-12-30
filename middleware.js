@@ -30,9 +30,13 @@ const addMsgListener = (imtype, chatid, userid, callback) => {
     res.setEncoding('utf8');
     let responseData = '';
 
-    res.on('data', (chunk) => responseData += chunk;);
+    res.on('data', (chunk) => {
+      responseData += chunk;
+    });
 
-    res.on('end', () => callback(responseData););
+    res.on('end', () => {
+      callback(responseData);
+    });
   });
 }
 
