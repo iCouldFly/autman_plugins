@@ -1,5 +1,6 @@
 /** 获取ip地址（LAN/WEB/V4/V6）
  * @author jusbe <https://github.com/iCouldFly>
+ * @returns {object} { 'LAN-IPv6': 'abcd::efgh:ijkl:mnop:qrst', 'LAN-IPv4': '123.456.789.000', 'WAN-IPv6': null, 'WAN-IPv4': '123.456.789.000', 'NET-IPv4': '123.456.789.000' }
  * @example console.log(await require('./jusapis/getIP.js'))
  * @history
  * - 2025-01-01 初版
