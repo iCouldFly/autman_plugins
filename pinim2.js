@@ -12,7 +12,7 @@
 //[icon: 图标url]图标链接地址，请使用48像素的正方形图标，支持http和https
 //[version: 1.0.0]版本号
 //[public: true] 是否发布？值为true或false，不设置则上传aut云时会自动设置为true，false时上传后不显示在市场中，但是搜索能搜索到，方便开发者测试
-//[price: 999] 上架价格
+//[price: 2] 上架价格
 //[description: 说明》复制 pinWX 到 pinGW，开源，其他平台自己改<br>命令》pinim2 （可自定义）<br><br>首发》20250114] 
 
 const middleware = require('./middleware.js');
