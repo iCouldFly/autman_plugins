@@ -26,38 +26,8 @@ const middleware = require('./middleware.js');
 const senderID = middleware.getSenderID();
 const s = new middleware.Sender(senderID)
 
-try {
-    var jusapi = require("./jusapi.js")
-} catch (e) {
-    if (e.code === "MODULE_NOT_FOUND") {
-        s.reply("未找到 jusapi，尝试自动下载")
-        fetch("https://raw.githubusercontent.com/iCouldFly/autman_plugins/refs/heads/scripts/jusapi.js")
-            .then(d => d.text())
-            .then(d => {
-                if (d.includes("title: jusapi")) {
-                    fs.writeFile("./jusapi.js", d, ((err, written) => {
-                        if (err) {
-                            s.reply("jusapi 下载失败") //.then(() => process.exit())
-                            s.reply(err)
-                            s.reply(written).then(() => process.exit())
-                            // process.exit()
-                        } else {
-                            s.reply("jusapi 下载完成，请重新发起命令").then(() => process.exit())
-                        }
-                    }))
-                } else {
-                    s.reply("jusapi 下载错误").then(() => process.exit())
-                }
-            })
-            .catch(e => {
-                // {"cause":{"errno":-4077,"code":"ECONNRESET","syscall":"read"}}
-                // {"cause":{"name":"ConnectTimeoutError","code":"UND_ERR_CONNECT_TIMEOUT","message":"Connect Timeout Error"}}
-                s.reply("jusapi 下载失败\n" + JSON.stringify(e)).then(() => process.exit())
-            })
-    } else {
-        s.reply("jusapi 加载失败").then(() => process.exit())
-    }
-}
+// const jusapiUrl = "https://gitee.com/jusbe/autman_plugins/raw/scripts/jusapi.js"
+try { var jusapi = require("./jusapi.js"); } catch (e) { if (e.code === "MODULE_NOT_FOUND") { const jusapiUrl = "https://raw.githubusercontent.com/iCouldFly/autman_plugins/refs/heads/scripts/jusapi.js"; s.reply("未找到 jusapi，尝试自动下载"); fetch(jusapiUrl).then(response => response.text()).then(data => { if (data.includes("title: jusapi")) { fs.writeFile("./jusapi.js", data).then(value => s.reply("jusapi 下载完成，请重新发起命令")).catch(reason => console.error(reason) || s.reply("jusapi 下载失败")).finally(() => process.exit()); } else { console.error(data) || s.reply("jusapi 下载错误").then(() => process.exit()); }; }).catch(e => { console.error(jusapiUrl, "下载失败:", e) || s.reply("jusapi 下载失败 " + (e?.cause?.code ?? "")).then(() => process.exit()); }); } else { console.error(e) || s.reply("jusapi 加载失败").then(() => process.exit()); }; };
 
 jusapi &&
     !(async () => {
