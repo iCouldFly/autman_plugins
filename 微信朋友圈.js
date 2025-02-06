@@ -1,6 +1,6 @@
 // [title: 微信朋友圈]
 // [class: 工具类]
-// [version: 0.0.2]
+// [version: 0.0.3 修复找不到jusapi]
 // [price: 2]
 // [rule: ^(朋友圈)(测试)$]
 // [cron: 33 * * * *]
@@ -8,8 +8,9 @@
 // [priority: 1]
 // [public: true]
 // [admin: true]
-// [disable: false]
+// [disable:true]
 // [platform: wx，仅限西瓜平台使用]
+// [open_source: true]是否开源
 // [author: jusbe]
 // [service: Jusbe]
 // [description: 命令》无，自行设置 插件定时<br>描述》朋友圈点赞、评论</br></br>首发：20240124]
@@ -25,15 +26,22 @@ const userid = GetUserID()
 const imType = GetImType();
 const param1 = param(1);
 const param2 = param(2);
+// const content = GetContent()
 
 Debug(`<div style="text-align: center; font-size: 72px; font-weight: bold;">${pluginName}</div>`)
 
 try {
     importJs('jusapi.js')
-    const jv = jusapi.test_version("0.1.1")
-    if (!jv.success) throw new Error(`【${pluginName}】插件 jusapi 需更新至：${jv.data}+\n .`)
+    Debug("加载旧板 jusapi")
 } catch (e) {
-    throw new Error(`【${pluginName}】请在插件市场安装“jusapi”\n .`);
+    Debug("未找到旧板 jusapi ，尝试查找新版")
+    try {
+        importJs('jusbe:jusapi.js')
+        Debug("新版 jusapi 加载成功")
+    } catch (e) {
+        Debug("新版也没找到")
+        throw new Error('请在插件市场安装“jusapi”');
+    }
 }
 
 const xyo_host = bucketGet("wx", "vlw_addr")
@@ -41,6 +49,15 @@ const xyo_token = bucketGet("wx", "vlw_token")
 const robot_wxid = bucketGet("wx", "robot_wxid")
 const xyos = new xyo(xyo_host, xyo_token, robot_wxid);
 if (!(xyos.success)) throw new Error(`【${pluginName}】西瓜框架连接失败`)
+
+// xyos.SendGroupMsgAndAt("48038273977@chatroom","test","Liksbe")
+// xyos.SendImageMsg("48038273977@chatroom","https://daoadmin.kuryun.com/static/imgs//home/logo.png")
+// xyos.SendCardMsg("48038273977@chatroom","Liksbe")
+
+// const title = "test title";const xml = `<msg><appmsg appid="" sdkver=""><title>${title}</title><des>Jusbe:pyqJusbe:pyq</des><action>view</action><type>19</type><showtype>0</showtype><content /><url /><dataurl /><lowurl /><lowdataurl /><recorditem>&lt;recordinfo&gt;&lt;title&gt;${title}&lt;/title&gt;&lt;desc&gt;Jusbe:pyqJusbe:pyq&lt;/desc&gt;&lt;datalist count="2"&gt;&lt;dataitem dataid="451a1478fb4729f3d2268e97838a051f" datatype="1" datasourceid="7633035549532630191"&gt;&lt;cdnencryver&gt;1&lt;/cdnencryver&gt;&lt;datadesc&gt;pyq&lt;/datadesc&gt;&lt;sourcedatapath /&gt;&lt;sourcethumbpath /&gt;&lt;msgDataPath /&gt;&lt;msgThumpPath /&gt;&lt;sourcename&gt;Jusbe&lt;/sourcename&gt;&lt;sourcetime&gt;2024-01-23 21:03:32&lt;/sourcetime&gt;&lt;sourceheadurl&gt;https://wx.qlogo.cn/mmhead/ver_1/CEZSvbPp8Shm5qmzNVvgbLDxEv51ete39EsBvlIicPSmiaFTom5joicwnTlKMEpfXcXcfvZsn6x3K9tySx0WIJw2w/132&lt;/sourceheadurl&gt;&lt;fromnewmsgid&gt;7633035549532630191&lt;/fromnewmsgid&gt;&lt;dataitemsource&gt;&lt;msgid&gt;7633035549532630191&lt;/msgid&gt;&lt;createtime&gt;1706015012&lt;/createtime&gt;&lt;hashusername&gt;b1585636b469dda09542576a31c92368bb8f274dbef2529ad061756a4219d911&lt;/hashusername&gt;&lt;/dataitemsource&gt;&lt;/dataitem&gt;&lt;dataitem dataid="8c5d10ccb83aac8efce3adb713f703a6" datatype="1" datasourceid="4286550637675007323"&gt;&lt;cdnencryver&gt;1&lt;/cdnencryver&gt;&lt;datadesc&gt;pyq&lt;/datadesc&gt;&lt;sourcedatapath /&gt;&lt;sourcethumbpath /&gt;&lt;msgDataPath /&gt;&lt;msgThumpPath /&gt;&lt;sourcename&gt;Jusbe&lt;/sourcename&gt;&lt;sourcetime&gt;2024-01-23 21:06:27&lt;/sourcetime&gt;&lt;sourceheadurl&gt;https://wx.qlogo.cn/mmhead/ver_1/CEZSvbPp8Shm5qmzNVvgbLDxEv51ete39EsBvlIicPSmiaFTom5joicwnTlKMEpfXcXcfvZsn6x3K9tySx0WIJw2w/132&lt;/sourceheadurl&gt;&lt;fromnewmsgid&gt;4286550637675007323&lt;/fromnewmsgid&gt;&lt;dataitemsource&gt;&lt;msgid&gt;4286550637675007323&lt;/msgid&gt;&lt;createtime&gt;1706015187&lt;/createtime&gt;&lt;hashusername&gt;b1585636b469dda09542576a31c92368bb8f274dbef2529ad061756a4219d911&lt;/hashusername&gt;&lt;/dataitemsource&gt;&lt;/dataitem&gt;&lt;/datalist&gt;&lt;favusername&gt;&lt;/favusername&gt;&lt;favcreatetime&gt;0&lt;/favcreatetime&gt;&lt;/recordinfo&gt;</recorditem><thumburl /><messageaction /><laninfo /><extinfo /><sourceusername /><sourcedisplayname /><commenturl /><appattach><totallen>0</totallen><attachid /><emoticonmd5 /><fileext /><aeskey /></appattach><webviewshared><publisherId /><publisherReqId>0</publisherReqId></webviewshared><weappinfo><pagepath /><username /><appid /><appservicetype>0</appservicetype></weappinfo><websearch /></appmsg><fromusername>Liksbe</fromusername><scene>0</scene><appinfo><version>1</version><appname></appname></appinfo><commenturl></commenturl></msg>`
+// xyos.SendMessageRecord("48038273977@chatroom",xml)
+
+// xyos.SendShareLinkMsg("48038273977@chatroom","test title","test desc","https://daoadmin.kuryun.com/static/imgs//home/logo.png","https://www.doubao.com/chat/")
 
 const pusher = jusapi.pusher(bucketGet("juspyq", "nothifies"))
 
