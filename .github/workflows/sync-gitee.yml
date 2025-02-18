@@ -1,0 +1,2 @@
+- name: sync-gitee
+  uses: jikkai/sync-gitee@v1
