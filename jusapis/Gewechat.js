@@ -1,6 +1,6 @@
 /**
  * @class Gewechat
- * @version 2.0.1
+ * @version 2.1.0
  * @author jusbe <https://github.com/iCouldFly>
  * @description
  * @history
