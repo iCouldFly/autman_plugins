@@ -7,7 +7,7 @@
 // [priority: 1]
 // [public: true]
 // [admin: true]
-// [disable:false]
+// [disable:true]
 // [platform: all]
 // [service: Jusbe]
 // [description: 请求些api，比如51白名单、品易白名单]

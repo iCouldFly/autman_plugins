@@ -7,9 +7,9 @@
 //[priority: 1]
 //[public: false]
 //[bypass: false]
-//[disable: false]
+//[disable:true]
 //[open_source: true]是否开源
-//[version: 1.0.4 增加配参设置，适配 qls/qinglong 数据桶]
+//[version: 1.0.5 修复找不到jusapi]
 //[priority: 1]
 //[rule: ^顺丰(速运)?=(https://mcs-mimp-web.sf-express.com/mcs-mimp/share/(app|weChat)/share(GiftReceive)?Redirect.+)$]
 //[description: 命令》顺丰速运=[抓包链接]<br>说明》仅作提交ck使用，未去重<br>首发：230608]
@@ -21,8 +21,16 @@ Debug('\n\n\n\n\n<div style="text-align: center; font-size: 72px; font-weight: b
 
 try {
     importJs('jusapi.js')
+    Debug("加载旧板 jusapi")
 } catch (e) {
-    throw new Error('请在插件市场安装“jusapi”');
+    Debug("未找到旧板 jusapi ，尝试查找新版")
+    try {
+        importJs('jusbe:jusapi.js')
+        Debug("新版 jusapi 加载成功")
+    } catch (e) {
+        Debug("新版也没找到")
+        throw new Error('请在插件市场安装“jusapi”');
+    }
 }
 
 const ql_name = bucketGet("sf_express", "ql_name") // 青龙名
