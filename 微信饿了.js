@@ -11,7 +11,7 @@
 //[disable:true]
 //[rule: ^微信饿了$]
 //[cron: 0 */4 * * *]
-//[description: 》命令: 微信饿了（可自定义）<br>》权限: qls数据<br>》描述: 自动同步 wxUid 到指定青龙面板的 elmck，适用于老虎本<br>请在配参中指定青龙/设置wxpusher邀请链接，并在青龙中添加"WX_PUSH_TOKEN"<br><br>首发: 230406]
+//[description: 命令》微信饿了（可自定义）<br>权限》qls数据<br>描述》自动同步 wxUid 到指定青龙面板的 elmck，适用于老虎本<br>请在配参中指定青龙/设置wxpusher邀请链接，并在青龙中添加"WX_PUSH_TOKEN"<br><br>首发: 230406]
 //[param: {"required":true,"key":"elm_wxpusher.ql_name","bool":false,"placeholder":"如：qinglong","name":"青龙","desc":"容器管理=>对接容器 中的 名称"}]
 //[param: {"required":true,"key":"elm_wxpusher.value_name","bool":false,"placeholder":"如：wxUid","name":"键名","desc":"记录用户UID的键名，老虎系为 wxUid"}]
 //[param: {"required":true,"key":"elm_wxpusher.wxpusher_qr_url","bool":false,"placeholder":"如：https://wxpusher.zjiecode.com/api/qrcode/......","name":"wxpusher二维码链接","desc":"创建应用后，在这里获取你的链接：<br>https://wxpusher.zjiecode.com/admin/main/app/appFollow"}]
